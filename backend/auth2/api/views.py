@@ -85,18 +85,16 @@ def test_method(request):
     test_case = queryset[0]['testcases']
     solution = sol[0]['solution'].replace('\r\n', '\n')
     # print(test_case)
-    if lang == "cppii":
+    if lang == "cpp":
         compile_result = subprocess.run(
-            ["clang++", os.path.join(folder_path, unique_filename),
+            ["g++", os.path.join(folder_path, unique_filename),
              "-o", os.path.join(folder_path, uniquename)],
             capture_output=True
         )
 
         if compile_result.returncode == 0:
             # Run the compiled program with the test case input
-            process = subprocess.Popen(
-                f"echo '{test_case}' | {
-                    os.path.join(folder_path, uniquename)}",
+            process = subprocess.Popen(f"echo '{test_case}' | {os.path.join(folder_path, uniquename)}",
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 shell=True,
@@ -128,8 +126,7 @@ def test_method(request):
                 "result": f"Compilation Error: {compile_result.stderr.decode('utf-8').strip()}"
             })
     else:  # lang == py
-        process = subprocess.Popen(f"echo '{test_case}' | python3 {os.path.join(
-            folder_path, unique_filename)}", shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(f"echo '{test_case}' | python {os.path.join( folder_path, unique_filename)}", shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = process.communicate()
         if process.returncode == 0:
             # Compare the output with the expected solution

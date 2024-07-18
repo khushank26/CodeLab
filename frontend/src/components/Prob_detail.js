@@ -20,7 +20,7 @@ function ProbDetail() {
     }
 
     async function showValue() {
-        let response = await fetch("http://127.0.0.1:8000/api/code/", {
+        let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/code/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -38,7 +38,7 @@ function ProbDetail() {
     }
     useEffect(() => {
         async function getProblemDetail() {
-            let response = await fetch(`http://127.0.0.1:8000/api/probdet/${id}`, {
+            let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/probdet/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'

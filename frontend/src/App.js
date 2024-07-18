@@ -14,17 +14,17 @@ function App() {
       {/*If you render things without path, they will appear on every path*/}
 
       <AuthProvider>
-        
-          <Routes>
 
-            <Route element={<Auth />} path="/" />   {/* You can use component={Auth} also */}
+        <Routes>
 
-            <Route element={<PrivateRouter><Problem /></PrivateRouter>} path="/problems" />
-            <Route element={<PrivateRouter><ProbDetail /></PrivateRouter>} path="/problem/:id" />
-            {/* <Route path="heroes/:id" element={} /> */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        
+          <Route element={<Auth />} path="/" />   {/* You can use component={Auth} also */}
+
+          <Route element={<PrivateRouter><Problem /></PrivateRouter>} path="/problems" />
+          <Route element={<PrivateRouter><ProbDetail /></PrivateRouter>} path="/problem/:id" />
+          {/* <Route path="heroes/:id" element={} /> */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+
       </AuthProvider>
 
     </Router>

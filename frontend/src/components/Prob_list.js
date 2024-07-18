@@ -14,7 +14,7 @@ function Problem() {
 
     useEffect(() => {
         async function getProblems() {
-            let response = await fetch('http://127.0.0.1:8000/api/prob/', {
+            let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/prob/`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -29,8 +29,8 @@ function Problem() {
     }, [])
 
     const problemComponents = [];
-    
-    
+
+
     for (let index = 0; index < problemData.length; index++) {
         const value = problemData[index];
         //console.log(value.id, value.problem_description, value.difficulty)

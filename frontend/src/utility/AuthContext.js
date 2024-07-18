@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   // we add e which means event handler as we are gonna give this info onSumbit or onClick which is an event
   const registerUser = async (e) => {
     e.preventDefault()
-    let response = await fetch("http://127.0.0.1:8000/api/register/", {
+    let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/register/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     console.log('hello')
     console.log('response', response)
     if (response.status === 201) {
-      let response = await fetch('http://127.0.0.1:8000/api/token/', {
+      let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/token/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -76,12 +76,9 @@ export const AuthProvider = ({ children }) => {
   }
 
 
-
-
-
   let loginUser = async (e) => {
     e.preventDefault()
-    let response = await fetch('http://127.0.0.1:8000/api/token/', {
+    let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/token/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -106,7 +103,7 @@ export const AuthProvider = ({ children }) => {
 
   let UpdateAuthToken = async () => {
 
-    let response = await fetch('http://127.0.0.1:8000/api/token/refresh/', {
+    let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/token/refresh/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
