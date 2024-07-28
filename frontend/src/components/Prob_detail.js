@@ -23,7 +23,8 @@ function ProbDetail() {
         let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/code/`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({
                 "code": (editorRef.current.getValue()),
@@ -32,7 +33,7 @@ function ProbDetail() {
             })
         })
         const data = await response.json()
-        console.log(data)
+        console.log('Code sent to system')
         setResult(data)
 
     }
@@ -41,13 +42,14 @@ function ProbDetail() {
             let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/probdet/${id}`, {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
 
                 }
 
             })
             let data = await response.json()
-            console.log(data)
+            console.log('getProblemDetail')
             setProblemData(data);
         }
         getProblemDetail();

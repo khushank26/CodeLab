@@ -21,7 +21,8 @@ export const AuthProvider = ({ children }) => {
     let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/register/`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify({
         'username': e.target.username.value,
@@ -33,13 +34,14 @@ export const AuthProvider = ({ children }) => {
     })
     let data = await response.json()
     console.log('data', data)
-    console.log('hello')
+    console.log('REGISTER USER CALLED')
     console.log('response', response)
     if (response.status === 201) {
       let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/token/`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
 
         },
         body: JSON.stringify({ 'username': e.target.username.value, 'password': e.target.password.value })
@@ -48,6 +50,7 @@ export const AuthProvider = ({ children }) => {
       let data = await response.json()
       console.log('data', data)
       console.log('response', response)
+      console.log('User login after registering')
 
       if (response.status === 200) {
         setAuthTokens(data)
@@ -81,7 +84,8 @@ export const AuthProvider = ({ children }) => {
     let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/token/`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
 
       },
       body: JSON.stringify({ 'username': e.target.username.value, 'password': e.target.password.value })
@@ -90,6 +94,7 @@ export const AuthProvider = ({ children }) => {
     let data = await response.json()
     console.log('data', data)
     console.log('response', response)
+    console.log('User Logging')
 
     if (response.status === 200) {
       setAuthTokens(data)
@@ -106,7 +111,8 @@ export const AuthProvider = ({ children }) => {
     let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/token/refresh/`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
 
       },
       body: JSON.stringify({ 'refresh': AuthTokens.refresh })
@@ -114,6 +120,7 @@ export const AuthProvider = ({ children }) => {
     let data = await response.json()
     console.log('data', data)
     console.log('response', response)
+    console.log('Tokens updated')
     if (response.status === 200) {
       setAuthTokens(data)
       setUser(jwtDecode(data.access))

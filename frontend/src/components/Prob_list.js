@@ -17,12 +17,14 @@ function Problem() {
             let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/prob/`, {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
 
                 }
 
             })
             let data = await response.json()
+            console.log('get problems')
             setProblemData(data);
         }
         getProblems();
