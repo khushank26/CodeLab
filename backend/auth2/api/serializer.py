@@ -49,7 +49,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             email=fields['email'],
 
         )
-        user.set_password(make_password(fields['password']))
+        user.set_password((fields['password']))
         user.save()
 
         return user

@@ -16,7 +16,7 @@ import os
 import subprocess
 
 
-class MyTokenObtainPairView(TokenObtainPairView):
+class MyTokenObtainPairView(TokenObtainPairView):   
     serializer_class = MyTokenObtainPairSerializer
 
 
